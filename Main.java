@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 class WrongStudentName extends Exception { }
 class WrongStudentAge extends Exception { }
+class WrongStudentDateOfBirth extends Exception { }
 
 class Main {
     public static Scanner scan = new Scanner(System.in);
@@ -23,6 +24,8 @@ class Main {
                 System.out.println("Błędne imie studenta!");
             } catch(WrongStudentAge e){
                 System.out.println("Błędny wiek studenta!");
+            } catch(WrongStudentDateOfBirth e){
+                System.out.println("Błędna data urodzenia studenta!");
             }
         }
     }
@@ -50,13 +53,23 @@ class Main {
     {
       System.out.println("Podaj wiek:");
       int age = scan.nextInt();
-      if(age < 0 || age >= 120)
+      if(age < 0 || age >= 110)
         throw new WrongStudentAge();
 
       return age;
     }
+
+    public static String ReadDate() throws WrongStudentDateOfBirth
+    {
+      System.out.println("Podaj date urodzenia:");
+      String date = scan.nextLine();
+      if(date.contains(""))
+        throw new WrongStudentDateOfBirth();
+
+      return date;
+    }
   
-    public static void exercise1() throws IOException, WrongStudentName, WrongStudentAge {
+    public static void exercise1() throws IOException, WrongStudentName, WrongStudentAge, WrongStudentDateOfBirth {
         var name = ReadName();
         var age = ReadAge();
         scan.nextLine();
